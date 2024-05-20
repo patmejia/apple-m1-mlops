@@ -1,34 +1,31 @@
 # apple-m1-mlops
 
-Apple M1-specific setup for machine learning engineering production systems, focusing on MLOps practices with Metal acceleration.
+Apple M1-specific setup for machine learning engineering production systems, focusing on MLOps practices with Metal acceleration and [Jupyter](https://jupyter.org/)
 
 For detailed acknowledgments, please see the [MLOps](https://github.com/https-deeplearning-ai/machine-learning-engineering-for-production-public/tree/main/course1/week1-ungraded-lab). This project is part of [deeplearning.ai](https://www.deeplearning.ai/)'s Machine Learning Engineering for Production Specialization.
 
-## Start Here
-
-### [Clone the repository](https://github.com/https-deeplearning-ai/machine-learning-engineering-for-production-public)
+[Clone the DeepLearning.ai repository (optional)](https://github.com/https-deeplearning-ai/machine-learning-engineering-for-production-public)
 
 ```bash
 git clone https://github.com/https-deeplearning-ai/machine-learning-engineering-for-production-public.git
 ```
 
-### 1. Navigate to the directory
+## Start Here
 
-```bash
-cd machine-learning-engineering-for-production-public/course1/week1-ungraded-lab
-```
-
-### 2. Environment Setup
-
-#### i. General Setup - no Apple M1
+### 1. Environment Setup
 
 ```bash
 conda create --name mlep-w1-lab python=3.8
 conda activate mlep-w1-lab
+```
+
+General Setup - no Apple M1 (optional)
+
+```bash
 pip install -r requirements.txt
 ```
 
-#### ii. Apple M1 Users
+#### Apple M1 Users
 
 ```bash
 # Add conda-forge to channels
@@ -51,36 +48,34 @@ sed -i '.bak' 's/^protobuf==.*/protobuf>=3.20.3,<4.21.0/' requirements-m1.txt
 # Install modified requirements
 pip install -r requirements-m1.txt
 ```
-#### Note:
+Compatabilit note:
 - Updates protobuf for tensorflow-macos 2.13.0 requirements.
 - Disables tensorflow==2.7.0 for M1 Mac compatibility.
 - Replaces opencv-python-headless with opencv==4.5.3 for M1.
 
 
-### 3. Verify Installations
+### 2. Verify Installations
 
 ```bash
 python -c "import tensorflow as tf; print('TensorFlow Version:', tf.__version__)"
 python -c "import cv2; print('OpenCV Version:', cv2.__version__)"
 ```
 
-### 4. Launch Jupyter Lab
+### 3. Launch Jupyter Lab
 
 ```bash
 jupyter lab
 ```
 
-### 5. Access Jupyter Lab and Run the Notebook
+### 4. Access Jupyter Lab and Run the Notebook
 
 i. Copy the URL from the terminal and paste it into your browser to open the `server.ipynb` notebook.
 
 ```plaintext
-http://localhost:8888/lab/tree/course1/week1-ungraded-lab/server.ipynb
+http://localhost:8888/lab
 ```
 
-ii. Run the cells by clicking on each and pressing `Shift + Enter` or using the play button.
-
-### 6. Run Installation Verification Tests
+### 5. Run Installation Verification Tests
 
 Run the test script:
 
@@ -88,8 +83,7 @@ Run the test script:
 python src/test_installation.py
 ```
 
-#### Note: 
-
+Test installtions note: 
 - TensorFlow Version: Verifies TensorFlow version starts with '2'.
 - TensorFlow Operation: Confirms GPU/Metal support via matrix multiplication.
 - OpenCV Version: Ensures OpenCV version is '4.5.3'.

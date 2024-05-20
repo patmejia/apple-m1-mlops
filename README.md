@@ -18,20 +18,17 @@ git clone https://github.com/https-deeplearning-ai/machine-learning-engineering-
 cd machine-learning-engineering-for-production-public/course1/week1-ungraded-lab
 ```
 
-### 2.Environment Setup
-
-```bash
-conda create --name mlep-w1-lab python=3.8
-conda activate mlep-w1-lab
-```
+### 2. Environment Setup
 
 #### i. General Setup - no Apple M1
 
 ```bash
+conda create --name mlep-w1-lab python=3.8
+conda activate mlep-w1-lab
 pip install -r requirements.txt
 ```
 
-#### ii. Apple M1 users: 
+#### ii. Apple M1 Users
 
 ```bash
 # Add conda-forge to channels
@@ -49,9 +46,15 @@ sed -i '.bak' \
     requirements.txt
 # Rename requirements for clarity
 mv requirements.txt requirements-m1.txt
+# Update protobuf version for compatibility
+sed -i '.bak' 's/^protobuf==.*/protobuf>=3.20.3,<4.21.0/' requirements-m1.txt
 # Install modified requirements
 pip install -r requirements-m1.txt
 ```
+#### Note:
+- Updates protobuf for tensorflow-macos 2.13.0 requirements.
+- Disables tensorflow==2.7.0 for M1 Mac compatibility.
+- Replaces opencv-python-headless with opencv==4.5.3 for M1.
 
 
 ### 3. Verify Installations
@@ -60,7 +63,6 @@ pip install -r requirements-m1.txt
 python -c "import tensorflow as tf; print('TensorFlow Version:', tf.__version__)"
 python -c "import cv2; print('OpenCV Version:', cv2.__version__)"
 ```
-
 
 ### 4. Launch Jupyter Lab
 
@@ -77,3 +79,19 @@ http://localhost:8888/lab/tree/course1/week1-ungraded-lab/server.ipynb
 ```
 
 ii. Run the cells by clicking on each and pressing `Shift + Enter` or using the play button.
+
+### 6. Run Installation Verification Tests
+
+Run the test script:
+
+```bash
+python src/test_installation.py
+```
+
+#### Note: 
+
+- TensorFlow Version: Verifies TensorFlow version starts with '2'.
+- TensorFlow Operation: Confirms GPU/Metal support via matrix multiplication.
+- OpenCV Version: Ensures OpenCV version is '4.5.3'.
+- OpenCV Operation: Validates OpenCV can process images.
+- Environment Requirements: Checks for dependency conflicts.

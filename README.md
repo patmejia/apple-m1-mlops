@@ -1,5 +1,7 @@
 # apple-m1-mlops
 
+![apple_m1](https://github.com/patmejia/apple-m1-mlops/assets/92187562/f6907543-cf45-4929-a2d2-468a4edf8555)
+
 Apple M1-specific setup for machine learning engineering production systems, focusing on MLOps practices with Metal acceleration and [Jupyter](https://jupyter.org/)
 
 For detailed acknowledgments, please see the [MLOps](https://github.com/https-deeplearning-ai/machine-learning-engineering-for-production-public/tree/main/course1/week1-ungraded-lab). This project is part of [deeplearning.ai](https://www.deeplearning.ai/)'s Machine Learning Engineering for Production Specialization.
